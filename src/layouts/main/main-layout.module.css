@@ -1,0 +1,75 @@
+.main-layout {
+    display: flex;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-layout__left {
+    padding: 78px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: space-between;
+    position: relative;
+    flex-grow: 3;
+    row-gap: 25px;
+    background-color: #FFE6C9;
+}
+
+.main-layout__ball {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-20%, -23%);
+    min-height: 100px;
+    max-height: 293px;
+    height: 40%;
+    aspect-ratio: 1/1;
+    background-position: bottom right;
+    background-size: contain;
+    background-image: url('ball.png');
+}
+
+.main-layout__bg {
+    align-self: stretch;
+    flex-grow: 1;
+    background-image: url('bg.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.main-layout__texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #73114B;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 34px;
+}
+
+.main-layout__header {
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 55px;
+}
+
+.main-layout__circle {
+    position: absolute;
+    border-radius: 50%;
+    bottom: -85px;
+    right: -61px;
+    width: 167px;
+    height: 167px;
+    background: linear-gradient(293.52deg, #860752 12%, #FFD9A8 88.01%);
+    opacity: 0.4;
+}
+
+.main-layout__content {
+    background-color: #ffffff;
+    flex-grow: 2;
+    padding: 75px 190px 75px 201px;
+}
+
