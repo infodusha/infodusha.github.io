@@ -11,8 +11,8 @@ type ButtonProps = {
 
 export function Button({children, onClick, view, type, renderPrefix}: ButtonProps) {
 	const className = cn(css.button, {
-		[css.buttonSecondary]: view === 'primary',
-		[css.buttonPrimary]: view === 'secondary',
+		[css.buttonPrimary]: view === 'primary',
+		[css.buttonSecondary]: view === 'secondary',
 	});
 
 	return (

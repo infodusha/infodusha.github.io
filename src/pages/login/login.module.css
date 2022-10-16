@@ -1,3 +1,20 @@
 .login {
+    display: flex;
+    flex-direction: column;
     color: #525252;
+}
+
+.login__logo {
+    align-self: flex-start;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__separator {
+    align-self: center;
+    width: 60%;
+    padding: 36px 0;
 }

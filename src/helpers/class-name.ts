@@ -1,9 +1,14 @@
-export function cn(...classNames: Array<string | Record<string, boolean>>): string {
-	return classNames.map(item => {
-		if (typeof item === 'string') {
-			return item;
-		}
+type Item = undefined | string | Record<string, boolean>;
 
-		return Object.entries(item).filter(([_, value]) => value).map(([key]) => key).join(' ');
-	}).join(' ');
+export function cn(...classNames: Item[]): string {
+	return classNames
+		.filter((item): item is Exclude<Item, undefined> => Boolean(item))
+		.map(item => {
+			if (typeof item === 'string') {
+				return item;
+			}
+
+			return Object.entries(item).filter(([_, value]) => value).map(([key]) => key).join(' ');
+		})
+		.join(' ');
 }

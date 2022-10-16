@@ -4,16 +4,15 @@ import path from 'node:path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  resolve:{
-    alias:{
-      '@helpers' : path.resolve(__dirname, './src/helpers'),
-    },
-  },
-  css: {
-    modules: {
-      localsConvention: 'dashes',
-    }
-  }
+	plugins: [react()],
+	resolve:{
+		alias:{
+			'@helpers' : path.resolve(__dirname, './src/helpers'),
+		},
+	},
+	css: {
+		modules: {
+			localsConvention: 'dashes',
+		},
+	},
 });
-

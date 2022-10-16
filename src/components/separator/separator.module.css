@@ -1,0 +1,27 @@
+.separator {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    overflow: hidden;
+
+    color: #A1A1A1;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.separator:before, .separator:after {
+    display: block;
+    content: '';
+    flex-grow: 1;
+    border-top: dashed 1px #DDDDDD;
+    overflow: hidden;
+}
+
+.separator:after {
+    transform: scale(2, 1) translateX(25%);
+}
+
+.separator:before {
+    transform: scale(2, 1) translateX(-25%);
+}
