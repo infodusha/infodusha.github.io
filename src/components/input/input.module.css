@@ -1,12 +1,13 @@
 .input {
     display: block;
     width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    height: 45px;
+    padding: 13px 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #000000;
+    background-color: #FFFFFF;
+    border: 1px solid #DED2D9;
+    border-radius: 5px;
 }

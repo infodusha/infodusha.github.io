@@ -1,7 +1,7 @@
 import css from './main-layout.module.css';
 
 type MainLayoutProps = {
-	children: JSX.Element;
+	children: JSX.Element | JSX.Element[];
 };
 
 export function MainLayout({children}: MainLayoutProps) {
@@ -16,9 +16,9 @@ export function MainLayout({children}: MainLayoutProps) {
 				</div>
 				<div className={css.mainLayout__circle}></div>
 			</div>
-			<div className={css.mainLayout__content}>
+			<main className={css.mainLayout__content}>
 				{children}
-			</div>
+			</main>
 		</div>
 	);
 }

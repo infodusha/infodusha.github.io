@@ -1,0 +1,16 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+}
+
+.form__inputs {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.form__actions {
+    position: relative;
+    top: -12px;
+}

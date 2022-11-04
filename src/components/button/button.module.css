@@ -1,8 +1,16 @@
 .button {
+    padding: 0;
+    border: none;
+
     display: flex;
     align-items: center;
     justify-content: center;
     column-gap: 13px;
+    cursor: pointer;
+}
+
+.button:active {
+    transform: scale(0.98);
 }
 
 .button-primary {

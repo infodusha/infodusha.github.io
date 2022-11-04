@@ -1,20 +1,45 @@
 .login {
     display: flex;
     flex-direction: column;
+    row-gap: 32px;
     color: #525252;
+}
+
+.login__wr {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 36px;
 }
 
 .login__logo {
     align-self: flex-start;
 }
 
-.login__form {
+.login__headers {
     display: flex;
     flex-direction: column;
+    row-gap: 3px;
+    color: #525252;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.login__title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 49px;
 }
 
 .login__separator {
     align-self: center;
     width: 60%;
-    padding: 36px 0;
+    padding: 4px 0;
+}
+
+.login__empty {
+    height: 72px;
 }

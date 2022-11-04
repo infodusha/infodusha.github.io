@@ -1,35 +1,31 @@
-import {useState} from 'react';
 import {MainLayout} from '../../layouts/main/MainLayout';
 import css from './login.module.css';
-import {Button} from '../../components/button/Button';
-import {Input} from '../../components/input/Input';
-import {Separator} from '../../components/separator/Separator';
+import {Button} from '@components/button/Button';
+import {Separator} from '@components/separator/Separator';
+import googleIcon from './google.svg';
+import {Form} from './components/form/Form';
 
 export function Login() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-
 	function googleButtonPrefix() {
-		return <img />;
+		return <img src={googleIcon} alt='Google icon' />;
 	}
 
 	return (
 		<MainLayout>
-			<div className={css.login}>
+			<div className={css.login__wr}>
 				<img className={css.login__logo} src='./icon.svg' alt='logo icon' />
-				<h1>Login to your Account</h1>
-				<span>See what is going on with your business</span>
+				<div className={css.login}>
+					<div className={css.login__headers}>
+						<h1 className={css.login__title}>Login to your Account</h1>
+						<span>See what is going on with your business</span>
+					</div>
+					<Button view='secondary' renderPrefix={googleButtonPrefix}>Continue with Google</Button>
 
-				<Button view='secondary' renderPrefix={googleButtonPrefix}>Continue with Google</Button>
+					<Separator className={css.login__separator}>or Sign in with Email</Separator>
 
-				<Separator className={css.login__separator}>or Sign in with Email</Separator>
-
-				<form className={css.login__form}>
-					<Input label='Email' type='email' value={email} onChange={setEmail} autoComplete='email' />
-					<Input label='Password' type='password' value={password} onChange={setPassword} autoComplete='current-password' />
-
-					<Button view='primary' type='submit'>Login</Button>
-				</form>
+					<Form />
+				</div>
+				<div className={css.login__empty}></div>
 			</div>
 		</MainLayout>
 	);
