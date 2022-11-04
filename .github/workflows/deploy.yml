@@ -24,7 +24,7 @@ jobs:
       - run: |
           tar \
             --dereference --hard-dereference \
-            --directory "dist" \
+            --directory "$RUNNER_TEMP/dist" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \
