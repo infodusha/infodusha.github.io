@@ -31,7 +31,7 @@ jobs:
           retention-days: 1
 
   deploy:
-    needs: archive
+    needs: build
     permissions:
       pages: write
       id-token: write
