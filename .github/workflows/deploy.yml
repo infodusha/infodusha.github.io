@@ -16,15 +16,10 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run build
-
-  archive:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - run: |
           tar \
             --dereference --hard-dereference \
-            --directory "$RUNNER_TEMP/dist" \
+            --directory "dist" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github \
