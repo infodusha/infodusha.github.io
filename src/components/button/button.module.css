@@ -20,8 +20,8 @@
     font-size: 18px;
     line-height: 25px;
 
-    color: #FFFFFF;
-    background-color: #7F265B;
+    color: white;
+    background-color: var(--color-primary);
     border-radius: 6px;
 }
 
@@ -32,8 +32,8 @@
     font-size: 14px;
     line-height: 19px;
 
-    color: #828282;
-    background-color: #FFFFFF;
+    color: var(--color-seconday);
+    background-color: white;
     border-radius: 5px;
     border: 1px solid #E8E8E8;
 }

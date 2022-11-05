@@ -6,8 +6,8 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 19px;
-    color: #000000;
-    background-color: #FFFFFF;
+    color: black;
+    background-color: white;
     border: 1px solid #DED2D9;
     border-radius: 5px;
 }
@@ -19,5 +19,5 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    color: #828282;
+    color: var(--color-seconday);
 }

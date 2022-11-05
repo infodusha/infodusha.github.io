@@ -12,6 +12,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
+    --color-primary: #7F265B;
+    --color-seconday: #828282;
+    --color-text: #525252;
 }
 
 *, *::before, *::after {
@@ -38,5 +42,5 @@ h1, h2, h3, h4, h5, h6 {
 a {
     text-decoration: none;
     font-weight: 600;
-    color: #7F265B;
+    color: var(--color-primary);
 }
