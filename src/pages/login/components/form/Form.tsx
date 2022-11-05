@@ -23,6 +23,7 @@ export function Form() {
 
 			<div className={css.form__actions}>
 				<Checkbox value={rememberMe} onChange={setRememberMe}>Remember Me</Checkbox>
+				<a href='#' className={css.form__link}>Forgot Password?</a>
 			</div>
 
 			<Button view='primary' type='submit'>Login</Button>

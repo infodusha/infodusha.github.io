@@ -13,4 +13,12 @@
 .form__actions {
     position: relative;
     top: -12px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__link {
+    font-size: 12px;
+    line-height: 16px;
 }
