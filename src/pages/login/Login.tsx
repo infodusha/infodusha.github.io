@@ -27,6 +27,10 @@ export function Login() {
 				</div>
 				<div className={css.login__empty}></div>
 			</div>
+			<footer className={css.login__footer}>
+        Not Registered Yet?
+				<a href='#'>Create an account</a>
+			</footer>
 		</MainLayout>
 	);
 }

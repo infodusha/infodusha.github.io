@@ -43,3 +43,12 @@
 .login__empty {
     height: 72px;
 }
+
+.login__footer {
+    align-self: center;
+    display: flex;
+    column-gap: 10px;
+    color: #828282;
+    font-size: 18px;
+    line-height: 25px;
+}
