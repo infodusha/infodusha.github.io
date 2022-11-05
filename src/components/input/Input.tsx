@@ -1,5 +1,5 @@
-import css from './input.module.css';
 import type {ChangeEvent} from 'react';
+import css from './input.module.css';
 
 type InputProps = {
 	label?: string;
@@ -21,7 +21,8 @@ export function Input({value, onChange, label, type = 'text', autoComplete}: Inp
 			value={value}
 			onChange={handleChange}
 			autoComplete={autoComplete}
-		/>);
+		/>
+	);
 
 	if (label) {
 		return (

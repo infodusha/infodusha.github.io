@@ -11,3 +11,13 @@
     border: 1px solid #DED2D9;
     border-radius: 5px;
 }
+
+.label {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: #828282;
+}
