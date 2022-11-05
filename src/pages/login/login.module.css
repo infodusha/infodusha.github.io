@@ -52,3 +52,13 @@
     font-size: 18px;
     line-height: 25px;
 }
+
+@media only screen and (max-height: 950px) {
+    /* On that size centering is worse so we hide this empty block */
+    .login__empty {
+        display: none;
+    }
+    .login__footer {
+        margin-top: 16px;
+    }
+}
