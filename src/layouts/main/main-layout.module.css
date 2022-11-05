@@ -84,6 +84,7 @@
 
     .main-layout__left {
         padding: 1% 10%;
+        flex-basis: 0;
     }
 
     .main-layout__bg {
@@ -99,5 +100,9 @@
 
     .main-layout__content {
         overflow: visible;
+    }
+
+    .main-layout__ball {
+        display: none;
     }
 }
