@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout/index'
+import { Route as LayoutTodoImport } from './routes/_layout/todo'
 import { Route as LayoutAboutImport } from './routes/_layout/about'
 
 // Create/Update Routes
@@ -32,6 +33,12 @@ const LayoutRoute = LayoutImport.update({
 const LayoutIndexRoute = LayoutIndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutTodoRoute = LayoutTodoImport.update({
+  id: '/todo',
+  path: '/todo',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -66,6 +73,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAboutImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/todo': {
+      id: '/_layout/todo'
+      path: '/todo'
+      fullPath: '/todo'
+      preLoaderRoute: typeof LayoutTodoImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/': {
       id: '/_layout/'
       path: '/'
@@ -80,11 +94,13 @@ declare module '@tanstack/react-router' {
 
 interface LayoutRouteChildren {
   LayoutAboutRoute: typeof LayoutAboutRoute
+  LayoutTodoRoute: typeof LayoutTodoRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutAboutRoute: LayoutAboutRoute,
+  LayoutTodoRoute: LayoutTodoRoute,
   LayoutIndexRoute: LayoutIndexRoute,
 }
 
@@ -95,12 +111,14 @@ export interface FileRoutesByFullPath {
   '': typeof LayoutRouteWithChildren
   '/login': typeof LoginRoute
   '/about': typeof LayoutAboutRoute
+  '/todo': typeof LayoutTodoRoute
   '/': typeof LayoutIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/about': typeof LayoutAboutRoute
+  '/todo': typeof LayoutTodoRoute
   '/': typeof LayoutIndexRoute
 }
 
@@ -109,15 +127,22 @@ export interface FileRoutesById {
   '/_layout': typeof LayoutRouteWithChildren
   '/login': typeof LoginRoute
   '/_layout/about': typeof LayoutAboutRoute
+  '/_layout/todo': typeof LayoutTodoRoute
   '/_layout/': typeof LayoutIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/about' | '/'
+  fullPaths: '' | '/login' | '/about' | '/todo' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/about' | '/'
-  id: '__root__' | '/_layout' | '/login' | '/_layout/about' | '/_layout/'
+  to: '/login' | '/about' | '/todo' | '/'
+  id:
+    | '__root__'
+    | '/_layout'
+    | '/login'
+    | '/_layout/about'
+    | '/_layout/todo'
+    | '/_layout/'
   fileRoutesById: FileRoutesById
 }
 
@@ -149,6 +174,7 @@ export const routeTree = rootRoute
       "filePath": "_layout.tsx",
       "children": [
         "/_layout/about",
+        "/_layout/todo",
         "/_layout/"
       ]
     },
@@ -157,6 +183,10 @@ export const routeTree = rootRoute
     },
     "/_layout/about": {
       "filePath": "_layout/about.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/todo": {
+      "filePath": "_layout/todo.tsx",
       "parent": "/_layout"
     },
     "/_layout/": {
