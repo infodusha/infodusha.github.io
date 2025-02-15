@@ -1,10 +1,11 @@
+import type {ReactNode} from 'react';
 import css from './button.module.css';
 import {cn} from '@helpers/class-name';
 
 type ButtonProps = {
 	children: string;
 	onClick?: () => void;
-	renderPrefix?: () => JSX.Element;
+	renderPrefix?: () => ReactNode;
 	view: 'primary' | 'secondary';
 	type?: 'button' | 'submit' | 'reset';
 };
