@@ -4,35 +4,15 @@ import { SetStateAction, useEffect, useState } from "react";
 const DEFAULT_PROJECT_NAME = "default";
 
 export function Todo() {
-	const [projects, setProjects] = useStorageState<Project[]>("projects", []);
+	const [projects, setProjects] = useStorageState<Project[]>("projects", [
+		{ name: DEFAULT_PROJECT_NAME, todos: [] },
+	]);
 	const [selected, setSelected] = useStorageState<string>(
 		"selected",
 		DEFAULT_PROJECT_NAME,
 	);
 
-	const projectsList = projects.length
-		? projects
-		: [{ name: DEFAULT_PROJECT_NAME, todos: [] }];
-	const current = projectsList.find((project) => project.name === selected);
-
-	if (!current) {
-		setSelected(projects[0].name);
-		return null;
-	}
-
-	function addProject() {
-		const name = prompt("Enter project name");
-		if (!name) {
-			return;
-		}
-
-		if (projectsList.some((project) => project.name === name)) {
-			alert("Project with this name already exists");
-			return;
-		}
-
-		setProjects(() => [...projectsList, { name, todos: [] }]);
-	}
+	const current = projects.find((project) => project.name === selected);
 
 	function addItem() {
 		const text = prompt("Enter todo text");
@@ -40,9 +20,9 @@ export function Todo() {
 			return;
 		}
 
-		const index = projectsList.indexOf(current!);
+		const index = projects.indexOf(current!);
 		setProjects(() =>
-			projectsList.with(index, {
+			projects.with(index, {
 				...current!,
 				todos: [...current!.todos, { text, isCompleted: false }],
 			}),
@@ -51,7 +31,11 @@ export function Todo() {
 
 	function renderProject(project: Project, i: number) {
 		return (
-			<Button key={i} view="primary" onClick={() => setSelected(project.name)}>
+			<Button
+				key={i}
+				view="secondary"
+				onClick={() => setSelected(project.name)}
+			>
 				{project.name}
 			</Button>
 		);
@@ -59,9 +43,8 @@ export function Todo() {
 
 	function renderTodo(todo: ToDo, i: number) {
 		function handleComplete() {
-			const index = current!.todos.indexOf(todo);
-			setProjects(() =>
-				projectsList.with(index, {
+			setProjects((prev) =>
+				prev.with(i, {
 					...current!,
 					todos: current!.todos.with(i, {
 						...todo,
@@ -72,47 +55,82 @@ export function Todo() {
 		}
 
 		function handleDelete() {
-			const index = current!.todos.indexOf(todo);
-			setProjects(() =>
-				projectsList.with(index, {
+			setProjects((prev) =>
+				prev.with(i, {
 					...current!,
 					todos: current!.todos.filter((item) => item !== todo),
 				}),
 			);
+			setSelected(DEFAULT_PROJECT_NAME);
 		}
 
 		return (
-			<div className="flex gap-2 align-center" key={i}>
+			<div className="flex gap-2 items-center justify-between" key={i}>
 				<span className={todo.isCompleted ? "line-through" : ""}>
 					{todo.text}
 				</span>
 
-				<Button key={i} view="secondary" onClick={handleComplete}>
-					{todo.isCompleted ? "Undo" : "Complete"}
-				</Button>
+				<div className="flex gap-2">
+					<Button view="secondary" onClick={handleComplete}>
+						{todo.isCompleted ? "Undo" : "Complete"}
+					</Button>
 
-				<Button key={i} view="secondary" onClick={handleDelete}>
-					delete
-				</Button>
+					<Button view="secondary" onClick={handleDelete}>
+						Delete
+					</Button>
+				</div>
+			</div>
+		);
+	}
+
+	function addProject() {
+		const name = prompt("Enter project name");
+		if (!name) {
+			return;
+		}
+
+		if (projects.some((project) => project.name === name)) {
+			alert("Project with this name already exists");
+			return;
+		}
+
+		setProjects((prev) => [...prev, { name, todos: [] }]);
+	}
+
+	function deleteProject() {
+		setProjects((prev) => prev.filter((item) => item !== current!));
+	}
+
+	function renderSelected() {
+		if (!current) {
+			return null;
+		}
+
+		return (
+			<div className="flex flex-col gap-2">
+				<div className="flex gap-2 items-center">
+					<h2>Project: {current.name}</h2>
+					<Button view="secondary" onClick={() => addItem()}>
+						Add item
+					</Button>
+					<Button view="secondary" onClick={deleteProject}>
+						Delete project
+					</Button>
+				</div>
+				{current.todos.map(renderTodo)}
 			</div>
 		);
 	}
 
 	return (
-		<div className="flex gap-4">
+		<div className="grid grid-cols-3 gap-4 p-4">
 			<div className="flex flex-col gap-2">
-				<Button view="secondary" onClick={addProject}>
+				<Button view="primary" onClick={addProject}>
 					Add Project
 				</Button>
 				{projects.map(renderProject)}
 			</div>
-			<div className="flex flex-col gap-2">
-				<h3 className="self-center">{current.name}</h3>
-				<Button view="secondary" onClick={() => addItem()}>
-					Add item
-				</Button>
-				{current.todos.map(renderTodo)}
-			</div>
+			{renderSelected()}
 		</div>
 	);
 }
