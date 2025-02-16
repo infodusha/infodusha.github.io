@@ -29,57 +29,15 @@ export function Todo() {
 		);
 	}
 
-	function renderProject(project: Project, i: number) {
+	function renderProject(project: Project) {
 		return (
 			<Button
-				key={i}
+				key={project.name}
 				view="secondary"
 				onClick={() => setSelected(project.name)}
 			>
 				{project.name}
 			</Button>
-		);
-	}
-
-	function renderTodo(todo: ToDo, i: number) {
-		function handleComplete() {
-			setProjects((prev) =>
-				prev.with(i, {
-					...current!,
-					todos: current!.todos.with(i, {
-						...todo,
-						isCompleted: !todo.isCompleted,
-					}),
-				}),
-			);
-		}
-
-		function handleDelete() {
-			setProjects((prev) =>
-				prev.with(i, {
-					...current!,
-					todos: current!.todos.filter((item) => item !== todo),
-				}),
-			);
-			setSelected(DEFAULT_PROJECT_NAME);
-		}
-
-		return (
-			<div className="flex gap-2 items-center justify-between" key={i}>
-				<span className={todo.isCompleted ? "line-through" : ""}>
-					{todo.text}
-				</span>
-
-				<div className="flex gap-2">
-					<Button view="secondary" onClick={handleComplete}>
-						{todo.isCompleted ? "Undo" : "Complete"}
-					</Button>
-
-					<Button view="secondary" onClick={handleDelete}>
-						Delete
-					</Button>
-				</div>
-			</div>
 		);
 	}
 
@@ -104,6 +62,53 @@ export function Todo() {
 	function renderSelected() {
 		if (!current) {
 			return null;
+		}
+
+		const currentIndex = projects.indexOf(current);
+
+		function renderTodo(todo: ToDo, todoIndex: number) {
+			function handleComplete() {
+				setProjects((prev) =>
+					prev.with(currentIndex, {
+						...current!,
+						todos: current!.todos.with(todoIndex, {
+							...todo,
+							isCompleted: !todo.isCompleted,
+						}),
+					}),
+				);
+			}
+
+			function handleDelete() {
+				setProjects((prev) =>
+					prev.with(currentIndex, {
+						...current!,
+						todos: current!.todos.filter((item) => item !== todo),
+					}),
+				);
+				setSelected(DEFAULT_PROJECT_NAME);
+			}
+
+			return (
+				<div
+					className="flex gap-2 items-center justify-between"
+					key={todoIndex}
+				>
+					<span className={todo.isCompleted ? "line-through" : ""}>
+						{todo.text}
+					</span>
+
+					<div className="flex gap-2">
+						<Button view="secondary" onClick={handleComplete}>
+							{todo.isCompleted ? "Undo" : "Complete"}
+						</Button>
+
+						<Button view="secondary" onClick={handleDelete}>
+							Delete
+						</Button>
+					</div>
+				</div>
+			);
 		}
 
 		return (
