@@ -23,11 +23,10 @@ export function useStorageState<T>(key: string, initialValue: T) {
 
 	function saveAndSetState(value: SetStateAction<T>) {
 		setState((prev) => {
-			const newValue = (
+			const newValue =
 				typeof value === "function"
 					? (value as (prevState: T) => T)(prev)
-					: value
-			) as T;
+					: value;
 			localStorage.setItem(key, JSON.stringify(newValue));
 			return newValue;
 		});
